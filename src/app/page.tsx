@@ -23,7 +23,7 @@ export default function Home() {
           </div>
           <div className="flex items-center gap-2">
             <Link href="/client" className="btn-ghost">بوابة العميل</Link>
-            <Link href="/dashboard" className="btn-primary">دخول لوحة التحكم</Link>
+            <Link href="/login" className="btn-primary">دخول لوحة التحكم</Link>
           </div>
         </div>
       </header>
@@ -38,7 +38,7 @@ export default function Home() {
           والتوثيق وحماية حقوق الشركة — كل ذلك في نظام سحابي مركزي واحد.
         </p>
         <div className="mt-8 flex items-center justify-center gap-3">
-          <Link href="/dashboard" className="btn-primary text-base px-6 py-3">
+          <Link href="/login" className="btn-primary text-base px-6 py-3">
             استكشف لوحات التحكم <ArrowLeft className="w-4 h-4" />
           </Link>
           <Link href="/client" className="btn-ghost text-base px-6 py-3">جرّب بوابة العميل</Link>

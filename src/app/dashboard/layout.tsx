@@ -1,5 +1,8 @@
 import Link from "next/link";
+import { cookies } from "next/headers";
 import { ShieldCheck, LayoutDashboard, TrendingUp, ClipboardList, HardHat, Crown, MessageSquare, BarChart3 } from "lucide-react";
+import { SESSION_COOKIE, readSession, ROLES } from "@/lib/auth";
+import LogoutButton from "@/components/logout-button";
 
 const nav = [
   { href: "/dashboard", label: "النظرة العامة", icon: LayoutDashboard },
@@ -12,6 +15,12 @@ const nav = [
 ];
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
+  const session = readSession(cookies().get(SESSION_COOKIE)?.value);
+  const roleLabel = ROLES.find((r) => r.id === session?.role)?.label ?? "مستخدم";
+  const name = session?.name ?? "مستخدم";
+  const company = session?.company ?? "شركة السلامة";
+  const initial = name.trim().charAt(0) || "؟";
+
   return (
     <div className="min-h-screen flex">
       <aside className="hidden md:flex w-72 shrink-0 flex-col bg-slate-950 text-slate-200 p-5">
@@ -21,14 +30,14 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </span>
           <div className="leading-tight">
             <div className="font-bold text-white text-sm">خدمات السلامة</div>
-            <div className="text-xs text-slate-400">شركة الأمان للسلامة</div>
+            <div className="text-xs text-slate-400">{company}</div>
           </div>
         </Link>
         <nav className="flex flex-col gap-1">
           {nav.map((n) => (
             <Link key={n.href} href={n.href}
               className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition">
-              <n.icon className="w-4.5 h-4.5 w-5 h-5" />
+              <n.icon className="w-5 h-5" />
               {n.label}
             </Link>
           ))}
@@ -43,10 +52,11 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           </div>
           <div className="flex items-center gap-3 mr-auto">
             <div className="text-left leading-tight">
-              <div className="text-sm font-semibold text-slate-900">مسؤول التنفيذ</div>
-              <div className="text-xs text-slate-500">عزّام · مدير المشاريع</div>
+              <div className="text-sm font-semibold text-slate-900">{name}</div>
+              <div className="text-xs text-slate-500">{roleLabel}</div>
             </div>
-            <span className="grid place-items-center w-10 h-10 rounded-full bg-brand-100 text-brand-700 font-bold">ع</span>
+            <span className="grid place-items-center w-10 h-10 rounded-full bg-brand-100 text-brand-700 font-bold">{initial}</span>
+            <LogoutButton />
           </div>
         </header>
         <main className="flex-1 p-5 md:p-8 max-w-7xl w-full mx-auto">{children}</main>
