@@ -145,3 +145,23 @@ export const messages: ChatMessage[] = [
   { id: "M5", channelId: "CH-2", author: "خالد (مبيعات)", role: "مبيعات", text: "تم إرسال عرض السعر المحدّث للمستودع.", time: "أمس" },
   { id: "M6", channelId: "CH-3", author: "ريم (مبيعات)", role: "استشاري", text: "نحتاج رخصة البناء لإكمال التحليل.", time: "08:40" },
 ];
+
+
+// ── محرك المخططات التحليلية للربحية ──
+export interface JobFinance {
+  jobId: string;
+  client: string;
+  revenue: number;
+  cost: number;
+}
+export const jobFinance: JobFinance[] = [
+  { jobId: "JOB-25-0420", client: "مطعم الذواقة", revenue: 18500, cost: 11800 },
+  { jobId: "JOB-25-0418", client: "مستودع النخبة", revenue: 96000, cost: 71200 },
+  { jobId: "JOB-25-0410", client: "عيادة الشفاء", revenue: 14200, cost: 8600 },
+  { jobId: "JOB-25-0399", client: "ورشة المحركات", revenue: 31000, cost: 24500 },
+];
+export const monthlyRevenue: { month: string; value: number }[] = [
+  { month: "يناير", value: 210 }, { month: "فبراير", value: 245 },
+  { month: "مارس", value: 198 }, { month: "أبريل", value: 312 },
+  { month: "مايو", value: 356 }, { month: "يونيو", value: 412 },
+];
