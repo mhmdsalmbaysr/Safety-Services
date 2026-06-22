@@ -111,3 +111,37 @@ export function analyzeRequirements(activity: string, area: number): string[] {
   if (/صالة|مناسبات/.test(activity)) reqs.push("مخططات إخلاء معتمدة وسعة استيعابية");
   return reqs;
 }
+
+
+// ── الشات الداخلي (بديل الواتساب) ──
+export interface ChatChannel {
+  id: string;
+  jobId: string;
+  title: string;
+  unread: number;
+  members: string[];
+}
+export interface ChatMessage {
+  id: string;
+  channelId: string;
+  author: string;
+  role: "العميل" | "مبيعات" | "استشاري" | "تنفيذ";
+  text: string;
+  time: string;
+  me?: boolean;
+}
+
+export const channels: ChatChannel[] = [
+  { id: "CH-1", jobId: "JOB-25-0420", title: "مطعم الذواقة", unread: 2, members: ["العميل", "سارة (مبيعات)", "م. فهد", "عزّام"] },
+  { id: "CH-2", jobId: "JOB-25-0418", title: "مستودع النخبة", unread: 0, members: ["العميل", "خالد (مبيعات)", "م. ليلى", "عزّام"] },
+  { id: "CH-3", jobId: "JOB-25-0410", title: "عيادة الشفاء", unread: 5, members: ["العميل", "ريم (مبيعات)", "م. فهد"] },
+];
+
+export const messages: ChatMessage[] = [
+  { id: "M1", channelId: "CH-1", author: "العميل", role: "العميل", text: "السلام عليكم، متى موعد المعاينة الميدانية؟", time: "09:12" },
+  { id: "M2", channelId: "CH-1", author: "م. فهد", role: "استشاري", text: "وعليكم السلام، تم اعتماد المتطلبات. الزيارة غداً الساعة 11 صباحاً.", time: "09:18" },
+  { id: "M3", channelId: "CH-1", author: "عزّام", role: "تنفيذ", text: "جهّزت الفنيين ولوحة الإنذار وصلت من المورد. سنبدأ التمديدات بعد المعاينة.", time: "09:25", me: true },
+  { id: "M4", channelId: "CH-1", author: "العميل", role: "العميل", text: "ممتاز، بانتظاركم. شكراً لكم.", time: "09:30" },
+  { id: "M5", channelId: "CH-2", author: "خالد (مبيعات)", role: "مبيعات", text: "تم إرسال عرض السعر المحدّث للمستودع.", time: "أمس" },
+  { id: "M6", channelId: "CH-3", author: "ريم (مبيعات)", role: "استشاري", text: "نحتاج رخصة البناء لإكمال التحليل.", time: "08:40" },
+];
