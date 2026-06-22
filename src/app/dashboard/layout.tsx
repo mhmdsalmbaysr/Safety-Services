@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ShieldCheck, LayoutDashboard, TrendingUp, ClipboardList, HardHat, Crown, MessageSquare } from "lucide-react";
+import { ShieldCheck, LayoutDashboard, TrendingUp, ClipboardList, HardHat, Crown, MessageSquare, BarChart3 } from "lucide-react";
 
 const nav = [
   { href: "/dashboard", label: "النظرة العامة", icon: LayoutDashboard },
@@ -7,6 +7,7 @@ const nav = [
   { href: "/dashboard/operations", label: "العمليات والتراخيص", icon: ClipboardList },
   { href: "/dashboard/execution", label: "لوحة عزام (التنفيذ)", icon: HardHat },
   { href: "/dashboard/chat", label: "الشات الداخلي", icon: MessageSquare },
+  { href: "/dashboard/analytics", label: "التحليلات والربحية", icon: BarChart3 },
   { href: "/dashboard/admin", label: "إدارة الاشتراكات", icon: Crown },
 ];
 
